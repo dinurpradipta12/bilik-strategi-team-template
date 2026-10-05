@@ -1,0 +1,1578 @@
+@import "tailwindcss";
+
+/* Keep Tailwind dark utilities tied to the app toggle, not the OS preference. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --brand-primary: #24324A;
+    --brand-accent: #F26B5E;
+    --bg-main: #F7F7F8;
+    --surface: #FFFFFF;
+    --border: #E8E8EC;
+    --text-primary: #202124;
+    --text-secondary: #737680;
+    --primary-navy: var(--brand-primary);
+    --accent-coral: var(--brand-accent);
+    --soft-coral: #FFF0ED;
+    --soft-navy: #EEF2F7;
+    --success: #4F9D78;
+    --warning: #E6A23C;
+    --danger: #D95858;
+    --modal-surface: #FFFFFF;
+    --modal-border: #E8E8EC;
+    --modal-backdrop: rgb(24 34 56 / 45%);
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@theme {
+  --color-bg-main: #F7F7F8;
+  --color-surface: #FFFFFF;
+  --color-border-custom: #E8E8EC;
+  --color-text-primary: #202124;
+  --color-text-secondary: #737680;
+  --color-primary-navy: var(--brand-primary);
+  --color-accent-coral: var(--brand-accent);
+  --color-soft-coral: #FFF0ED;
+  --color-soft-navy: #EEF2F7;
+  --color-success: #4F9D78;
+  --color-warning: #E6A23C;
+  --color-danger: #D95858;
+}
+
+/* ─── Application dark theme ────────────────────────────────
+   The product historically uses a light token palette in many
+   page-level Tailwind classes. These semantic overrides keep the
+   existing page structure intact while giving every surface a
+   consistent charcoal theme. */
+html.dark {
+  color-scheme: dark;
+  --bg-main: #171A20;
+  --surface: #20242C;
+  --surface-raised: #282D36;
+  --border: #303742;
+  --text-primary: #F4F6FA;
+  --text-secondary: #98A2B3;
+  --primary-navy: #1F2733;
+  --accent-coral: #F26B5E;
+  --soft-coral: #3B272B;
+  --soft-navy: #2A3340;
+  --success: #62B58D;
+  --warning: #E9A955;
+  --danger: #EF7373;
+  --modal-surface: #2B323D;
+  --modal-border: #4B5768;
+  --modal-backdrop: rgb(5 8 15 / 72%);
+}
+
+html.dark body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+}
+
+html.dark input:not([type='checkbox']):not([type='radio']),
+html.dark textarea,
+html.dark select {
+  background-color: var(--surface) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border) !important;
+}
+
+html.dark option {
+  background-color: var(--surface);
+  color: var(--text-primary);
+}
+
+html.dark ::placeholder {
+  color: #7F8999;
+  opacity: 1;
+}
+
+/* Common light surfaces used throughout the existing application. */
+html.dark [class~='bg-[#FFFFFF]'],
+html.dark [class~='bg-white'] {
+  background-color: var(--surface);
+}
+
+html.dark [class~='bg-[#F7F7F8]'] {
+  background-color: var(--bg-main);
+}
+
+html.dark [class~='bg-[#F4F4F5]'],
+html.dark [class~='bg-[#F1F1F3]'],
+html.dark [class~='bg-[#F2F4F7]'],
+html.dark [class~='bg-[#F3F4F6]'],
+html.dark [class~='bg-[#F4F7FB]'],
+html.dark [class~='bg-[#F4F8FD]'],
+html.dark [class~='bg-[#F6F7F9]'],
+html.dark [class~='bg-[#F7F8FA]'],
+html.dark [class~='bg-[#F8F9FB]'],
+html.dark [class~='bg-[#FAFAFB]'],
+html.dark [class~='bg-[#EBEBED]'],
+html.dark [class~='bg-[#E8E8EC]'] {
+  background-color: var(--surface-raised);
+}
+
+html.dark [class~='bg-[#EEF2F7]'],
+html.dark [class~='bg-[#E8F0FA]'],
+html.dark [class~='bg-[#EAF1FB]'] {
+  background-color: #2A3443;
+}
+
+html.dark [class~='bg-[#EEF8F3]'] {
+  background-color: #1E392C;
+}
+
+html.dark [class~='bg-[#E7F4ED]'] {
+  background-color: #1E392C;
+}
+
+html.dark [class~='bg-[#FFF0ED]'],
+html.dark [class~='bg-[#FFF5F3]'],
+html.dark [class~='bg-[#FDE9E7]'] {
+  background-color: #3B272B;
+}
+
+html.dark [class~='bg-[#FEF3D6]'],
+html.dark [class~='bg-[#FFF0DF]'],
+html.dark [class~='bg-[#FFF1DB]'],
+html.dark [class~='bg-[#FFF2DF]'],
+html.dark [class~='bg-[#FFF9ED]'] {
+  background-color: #3D321F;
+}
+
+html.dark [class~='bg-[#EAF2FF]'] {
+  background-color: #29364A;
+}
+
+html.dark [class~='bg-[#EEE9FF]'],
+html.dark [class~='bg-[#F2E9FA]'] {
+  background-color: #32294C;
+}
+
+html.dark [class~='bg-[#24324A]'] {
+  background-color: #1F2733;
+}
+
+html.dark [class~='bg-[#1A2536]'] {
+  background-color: #111822;
+}
+
+html.dark [class~='bg-[#24324A]/95'] {
+  background-color: rgb(31 39 51 / 95%);
+}
+
+/* Keep saturated status/action fills as accents in dark mode. */
+html.dark [class~='bg-[#F26B5E]'] { background-color: #C9574E; }
+html.dark [class~='bg-[#D95858]'],
+html.dark [class~='bg-[#D95346]'],
+html.dark [class~='bg-[#DD5C51]'],
+html.dark [class~='bg-[#b84343]'] { background-color: #B74747; }
+html.dark [class~='bg-[#E6A23C]'] { background-color: #A87528; }
+html.dark [class~='bg-[#EF4444]'] { background-color: #B74747; }
+html.dark [class~='bg-[#4F9D78]'],
+html.dark [class~='bg-[#10B981]'] { background-color: #3F8667; }
+html.dark [class~='bg-[#3B82F6]'] { background-color: #2E68C4; }
+html.dark [class~='bg-[#7B68EE]'],
+html.dark [class~='bg-[#6C5CE7]'],
+html.dark [class~='bg-[#6852ED]'],
+html.dark [class~='bg-[#6655D2]'] { background-color: #5848C7; }
+
+html.dark [class~='bg-[#DCE9FF]'],
+html.dark [class~='bg-[#DDE4ED]'],
+html.dark [class~='bg-[#E2E9F2]'],
+html.dark [class~='bg-[#E2ECF8]'],
+html.dark [class~='bg-[#E8F1FF]'],
+html.dark [class~='bg-[#EBF5FF]'],
+html.dark [class~='bg-[#EFF2F5]'],
+html.dark [class~='bg-[#F5F7F9]'] {
+  background-color: var(--surface-raised);
+}
+
+html.dark [class~='bg-[#E3F8E9]'],
+html.dark [class~='bg-[#E6F4ED]'],
+html.dark [class~='bg-[#EEF8F2]'] {
+  background-color: #1E392C;
+}
+
+html.dark [class~='bg-[#F0EAFD]'],
+html.dark [class~='bg-[#F2E8FF]'],
+html.dark [class~='bg-[#F3E8FF]'] {
+  background-color: #32294C;
+}
+
+html.dark [class~='bg-[#FEE5E2]'],
+html.dark [class~='bg-[#FFE4DE]'],
+html.dark [class~='bg-[#FFE8E8]'] {
+  background-color: #3B272B;
+}
+
+html.dark [class~='bg-[#FFF8E7]'],
+html.dark [class~='bg-[#FFFBF0]'],
+html.dark [class~='bg-[#FFFBF2]'] {
+  background-color: #3D321F;
+}
+
+/* Preserve the product accent colors while improving contrast for text. */
+html.dark [class~='text-[#202124]'],
+html.dark [class~='text-[#24324A]'] {
+  color: var(--text-primary) !important;
+}
+
+html.dark [class~='text-[#737680]'],
+html.dark [class~='text-[#8C9BAE]'] {
+  color: var(--text-secondary) !important;
+}
+
+html.dark [class~='text-[#334155]'] {
+  color: #CBD5E1 !important;
+}
+
+html.dark [class~='text-[#40536F]'],
+html.dark [class~='text-[#64748B]'],
+html.dark [class~='text-[#1E40AF]'],
+html.dark [class~='text-[#1E56B3]'],
+html.dark [class~='text-[#2563EB]'] {
+  color: #AFC0D5 !important;
+}
+
+html.dark [class~='text-[#1D7434]'],
+html.dark [class~='text-[#2F7D58]'],
+html.dark [class~='text-[#317A58]'],
+html.dark [class~='text-[#356D53]'],
+html.dark [class~='text-[#3D8362]'] {
+  color: #8DD0A9 !important;
+}
+
+html.dark [class~='text-[#B5473D]'],
+html.dark [class~='text-[#C22929]'],
+html.dark [class~='text-[#C94D43]'],
+html.dark [class~='text-[#D97706]'] {
+  color: #FF9B90 !important;
+}
+
+html.dark [class~='text-[#6852ED]'],
+html.dark [class~='text-[#6929C4]'],
+html.dark [class~='text-[#9333EA]'] {
+  color: #C4B5FD !important;
+}
+
+html.dark [class~='text-[#1D4ED8]'] {
+  color: #9CC1FF !important;
+}
+
+html.dark [class~='text-[#0369A1]'] {
+  color: #7DD3FC !important;
+}
+
+html.dark [class~='text-[#6D28D9]'] {
+  color: #C4B5FD !important;
+}
+
+/* Light borders/dividers become visible but restrained on charcoal surfaces. */
+html.dark [class~='border'],
+html.dark [class~='border-t'],
+html.dark [class~='border-r'],
+html.dark [class~='border-b'],
+html.dark [class~='border-l'] {
+  border-color: var(--border);
+}
+
+html.dark [class~='border-[#E8E8EC]'],
+html.dark [class~='divide-[#E8E8EC]'] > :not([hidden]) ~ :not([hidden]),
+html.dark [class~='border-[#E5EAF0]'] {
+  border-color: var(--border) !important;
+}
+
+/* Some components append hover/focus variants to the same light border token. */
+html.dark [class*='border-[#E8E8EC]'],
+html.dark [class*='border-[#E5EAF0]'] {
+  border-color: var(--border) !important;
+}
+
+html.dark [class~='border-[#D4E0EF]'],
+html.dark [class~='border-[#B8D1FF]'] {
+  border-color: #40536B !important;
+}
+
+html.dark [class~='border-[#DDD6FE]'] {
+  border-color: #5B4A90 !important;
+}
+
+html.dark [class~='border-[#DDE1E7]'],
+html.dark [class~='border-[#D7DEE8]'],
+html.dark [class~='border-[#D7E3F2]'],
+html.dark [class~='border-[#CBD3DE]'],
+html.dark [class~='border-[#C8D5E5]'],
+html.dark [class~='border-[#AAB5C5]'],
+html.dark [class~='border-[#F7F7F8]'] {
+  border-color: var(--border) !important;
+}
+
+html.dark [class~='border-[#F26B5E]'] { border-color: #C9574E !important; }
+html.dark [class~='border-[#D95858]'] { border-color: #B74747 !important; }
+html.dark [class~='border-[#E6A23C]'] { border-color: #A87528 !important; }
+html.dark [class~='border-[#4F9D78]'],
+html.dark [class~='border-[#10B981]'] { border-color: #3F8667 !important; }
+html.dark [class~='border-[#3B82F6]'] { border-color: #2E68C4 !important; }
+html.dark [class~='border-[#7B68EE]'] { border-color: #5848C7 !important; }
+
+html.dark [class~='placeholder-[#737680]']::placeholder {
+  color: #7F8999 !important;
+}
+
+html.dark [class~='ring-white'] {
+  --tw-ring-color: #20242C !important;
+}
+
+html.dark [class~='hover:bg-[#F7F7F8]']:hover {
+  background-color: var(--surface-raised) !important;
+}
+
+html.dark [class~='hover:bg-[#EEF2F7]']:hover {
+  background-color: #2A3340 !important;
+}
+
+html.dark [class~='hover:text-[#202124]']:hover {
+  color: var(--text-primary) !important;
+}
+
+/* Standard modals sit one visual level above regular cards in dark mode.
+   The brighter surface, defined edge, and layered shadow prevent dialogs from
+   blending into the dimmed page behind them. Keep this after the base color
+   mappings so modal elevation wins over generic bg-white/border overrides. */
+html.dark [data-mobile-modal],
+html.dark [data-modal-overlay] {
+  background-color: var(--modal-backdrop) !important;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+html.dark [data-mobile-modal-panel],
+html.dark [data-mobile-modal] > [role='dialog'],
+html.dark [data-modal-surface] {
+  background-color: var(--modal-surface) !important;
+  border: 1px solid var(--modal-border) !important;
+  box-shadow:
+    0 30px 90px -14px rgb(0 0 0 / 88%),
+    0 0 0 1px rgb(255 255 255 / 5%),
+    0 0 42px rgb(93 124 170 / 14%) !important;
+}
+
+/* Dark-only readability refinements for analytics, calendar, assets, and chat. */
+html.dark .dashboard-progress-track {
+  background-color: #344152 !important;
+}
+
+html.dark .dashboard-project-progress-fill {
+  background-color: #7186A5 !important;
+}
+
+html.dark .avg-hours-dot-high {
+  background-color: #7186A5 !important;
+}
+
+html.dark .avg-hours-dot-medium {
+  background-color: #62B58D !important;
+}
+
+html.dark .avg-hours-dot-low {
+  background-color: #4B5666 !important;
+}
+
+html.dark .dashboard-offline-dot {
+  background-color: #D45F62 !important;
+}
+
+html.dark .dashboard-chart-created-swatch {
+  background-color: #7186A5 !important;
+}
+
+html.dark .dashboard-chart-completed-swatch {
+  background-color: #62B58D !important;
+}
+
+html.dark .calendar-outside-month {
+  background-color: #171B22 !important;
+  color: #687385 !important;
+}
+
+html.dark .calendar-today {
+  background-color: #252C36 !important;
+}
+
+html.dark .calendar-grid-lines > :not([hidden]) ~ :not([hidden]),
+html.dark .calendar-week-rows > .calendar-week-row ~ .calendar-week-row,
+html.dark .calendar-week-header > :not([hidden]),
+html.dark .calendar-month-header {
+  border-color: #2D343E !important;
+}
+
+/* Calendar dividers use Tailwind's logical border properties. Set each
+   direction explicitly so the light-mode white divider cannot leak into dark mode. */
+html.dark .calendar-grid-lines > * {
+  border-color: #2D343E !important;
+  border-left-color: #2D343E !important;
+  border-inline-start-color: #2D343E !important;
+  border-right-color: #2D343E !important;
+  border-inline-end-color: #2D343E !important;
+}
+
+html.dark .calendar-week-rows > .calendar-week-row + .calendar-week-row {
+  border-color: #2D343E !important;
+  border-top-color: #2D343E !important;
+  border-block-start-color: #2D343E !important;
+}
+
+html.dark .calendar-week-header > * {
+  border-color: #2D343E !important;
+  border-left-color: #2D343E !important;
+  border-inline-start-color: #2D343E !important;
+  border-right-color: #2D343E !important;
+  border-inline-end-color: #2D343E !important;
+}
+
+html.dark .calendar-week-header,
+html.dark .calendar-month-header {
+  border-bottom-color: #2D343E !important;
+}
+
+html.dark .calendar-week-rows,
+html.dark .calendar-week-row,
+html.dark .calendar-date-cell {
+  border-color: #2D343E !important;
+}
+
+html.dark .timeline-week-calendar,
+html.dark .timeline-month-calendar {
+  border-color: #2D343E !important;
+}
+
+/* Preserve event identity in dark mode: each event keeps a distinct, muted
+   tone instead of inheriting the generic light-surface conversion. */
+html.dark [data-calendar-tone='blue'] {
+  background-color: #2E4059 !important;
+  border-color: #4E6A8D !important;
+  color: #B8D0EE !important;
+}
+
+html.dark [data-calendar-tone='blue'] [class~='bg-[#E8F1FF]'] {
+  background-color: #2E4059 !important;
+}
+
+html.dark [data-calendar-tone='blue'] [class~='border-[#BDD7FF]'] {
+  border-color: #4E6A8D !important;
+}
+
+html.dark [data-calendar-tone='blue'] [class~='text-[#1E56B3]'] {
+  color: #B8D0EE !important;
+}
+
+html.dark [data-calendar-tone='blue'] * {
+  color: #B8D0EE !important;
+}
+
+html.dark [data-calendar-tone='green'] {
+  background-color: #294536 !important;
+  border-color: #47735B !important;
+  color: #B0E0C0 !important;
+}
+
+html.dark [data-calendar-tone='green'] [class~='bg-[#E3F8E9]'] {
+  background-color: #294536 !important;
+}
+
+html.dark [data-calendar-tone='green'] [class~='border-[#B4ECC2]'] {
+  border-color: #47735B !important;
+}
+
+html.dark [data-calendar-tone='green'] [class~='text-[#1D7434]'] {
+  color: #B0E0C0 !important;
+}
+
+html.dark [data-calendar-tone='green'] * {
+  color: #B0E0C0 !important;
+}
+
+html.dark [data-calendar-tone='purple'] {
+  background-color: #3C3152 !important;
+  border-color: #6F5A98 !important;
+  color: #D0BFF5 !important;
+}
+
+html.dark [data-calendar-tone='purple'] [class~='bg-[#F2E8FF]'] {
+  background-color: #3C3152 !important;
+}
+
+html.dark [data-calendar-tone='purple'] [class~='border-[#DAAFFE]'] {
+  border-color: #6F5A98 !important;
+}
+
+html.dark [data-calendar-tone='purple'] [class~='text-[#6929C4]'] {
+  color: #D0BFF5 !important;
+}
+
+html.dark [data-calendar-tone='purple'] * {
+  color: #D0BFF5 !important;
+}
+
+html.dark [data-calendar-tone='coral'] {
+  background-color: #4B3034 !important;
+  border-color: #8A5156 !important;
+  color: #F0B1B2 !important;
+}
+
+html.dark [data-calendar-tone='coral'] [class~='bg-[#FFE8E8]'] {
+  background-color: #4B3034 !important;
+}
+
+html.dark [data-calendar-tone='coral'] [class~='border-[#FFB8B8]'] {
+  border-color: #8A5156 !important;
+}
+
+html.dark [data-calendar-tone='coral'] [class~='text-[#C22929]'] {
+  color: #F0B1B2 !important;
+}
+
+html.dark [data-calendar-tone='coral'] * {
+  color: #F0B1B2 !important;
+}
+
+html.dark .calendar-outside-month [class~='text-[#202124]'],
+html.dark .calendar-outside-month [class~='text-[#A0A3BD]'] {
+  color: #687385 !important;
+}
+
+html.dark .assets-card-footer {
+  background-color: #242A33 !important;
+  border-color: var(--border) !important;
+}
+
+html.dark .floating-chat-launcher {
+  background-color: #2C3848 !important;
+  border: 1px solid #4D5C70;
+  box-shadow: 0 10px 28px rgb(0 0 0 / 35%);
+}
+
+html.dark .floating-chat-launcher:hover {
+  background-color: #35445A !important;
+}
+
+html.dark .floating-chat-icon {
+  color: #FF8B80 !important;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #4A5362;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #687487;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D1D5DB;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9CA3AF;
+}
+
+/* ─── Animations ─────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideLeft {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.animate-slide-left {
+  animation: slideLeft 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes mobileModalSheetIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes mobileModalBackdropIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Form dialogs behave as bottom sheets on phones. Tablet and desktop retain
+   their centered modal layout. */
+@media (max-width: 767px) {
+  [data-mobile-modal] {
+    align-items: flex-end !important;
+    padding: 0 !important;
+    overflow: hidden;
+    animation: mobileModalBackdropIn 0.2s ease-out both;
+  }
+
+  [data-mobile-modal-panel],
+  [data-mobile-modal] > [role='dialog'] {
+    width: 100% !important;
+    max-width: none !important;
+    max-height: 92svh !important;
+    margin: 0 !important;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border-radius: 1.5rem 1.5rem 0 0 !important;
+    transform-origin: bottom center;
+    will-change: transform, opacity;
+    animation: mobileModalSheetIn 0.42s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-mobile-modal],
+  [data-mobile-modal-panel],
+  [data-mobile-modal] > [role='dialog'] {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* ─── iPhone Dynamic Island Pill ──────────────────────────── */
+@keyframes dynamicIslandIn {
+  0%   { opacity: 0; transform: translateX(-50%) scaleX(0.35) scaleY(0.5); border-radius: 9999px; }
+  60%  { opacity: 1; transform: translateX(-50%) scaleX(1.04) scaleY(1.04); }
+  100% { opacity: 1; transform: translateX(-50%) scaleX(1) scaleY(1); }
+}
+@keyframes dynamicIslandOut {
+  0%   { opacity: 1; transform: translateX(-50%) scaleX(1) scaleY(1); }
+  100% { opacity: 0; transform: translateX(-50%) scaleX(0.4) scaleY(0.5); }
+}
+
+.dynamic-island-enter {
+  animation: dynamicIslandIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+.dynamic-island-exit {
+  animation: dynamicIslandOut 0.3s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+/* ─── Toast Slide In from Right ───────────────────────────── */
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(110%); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes toastOut {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(110%); }
+}
+
+.toast-enter {
+  animation: toastIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+.toast-exit {
+  animation: toastOut 0.25s ease-in forwards;
+}
+
+/* ─── Notification Badge Pulse ────────────────────────────── */
+@keyframes badgePop {
+  0%   { transform: scale(0.5); opacity: 0; }
+  70%  { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.badge-pop {
+  animation: badgePop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* ─── Online Indicator Pulse ──────────────────────────────── */
+@keyframes onlinePulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(79,157,120,0.5); }
+  50%       { opacity: 0.8; box-shadow: 0 0 0 4px rgba(79,157,120,0); }
+}
+.online-dot {
+  animation: onlinePulse 2s ease-in-out infinite;
+}
+
+/* ─── Material 3 soft visual layer ──────────────────────────
+   Material 3 is the application's permanent visual system. The data
+   attribute keeps the semantic layer explicit and prevents selector leakage. */
+html[data-ui-style='m3'] {
+  --m3-ref-blue: #95B1EE;
+  --m3-ref-sky: #97C2EC;
+  --m3-ref-cream: #FFFDF5;
+  --m3-ref-lime: #E7F1A8;
+  --m3-ref-navy: #364C84;
+  --m3-ref-stone: #D6D0C2;
+  --m3-ref-ink: #1F1F1F;
+
+  --m3-primary: #364C84;
+  --m3-on-primary: #FFFFFF;
+  --m3-primary-container: #DDE6FF;
+  --m3-on-primary-container: #1A2F62;
+  --m3-secondary: #526995;
+  --m3-on-secondary: #FFFFFF;
+  --m3-secondary-container: #DFE8F8;
+  --m3-on-secondary-container: #25385E;
+  --m3-tertiary: #5E6818;
+  --m3-on-tertiary: #FFFFFF;
+  --m3-tertiary-container: #E7F1A8;
+  --m3-on-tertiary-container: #2E3500;
+  --m3-error: #A33C45;
+  --m3-on-error: #FFFFFF;
+  --m3-error-container: #FFDADD;
+  --m3-on-error-container: #5A0A17;
+  --m3-success: #356D53;
+  --m3-on-success: #FFFFFF;
+  --m3-success-container: #D9F1E3;
+  --m3-on-success-container: #173D2A;
+  --m3-warning: #76590D;
+  --m3-on-warning: #FFFFFF;
+  --m3-warning-container: #FCE9B6;
+  --m3-on-warning-container: #4B3500;
+  --m3-surface: #FFFDF7;
+  --m3-surface-dim: #D9D9E0;
+  --m3-surface-bright: #FFFDF7;
+  --m3-surface-container-lowest: #FFFFFF;
+  --m3-surface-container-low: #F7F7FC;
+  --m3-surface-container: #F0F1F7;
+  --m3-surface-container-high: #E9EAF1;
+  --m3-surface-container-highest: #E3E4EB;
+  --m3-on-surface: #1B1B20;
+  --m3-on-surface-variant: #555A66;
+  --m3-outline: #737985;
+  --m3-outline-variant: #C4C7D1;
+  --m3-inverse-surface: #303036;
+  --m3-inverse-on-surface: #F3F0F7;
+
+  --m3-shape-xs: 4px;
+  --m3-shape-sm: 8px;
+  --m3-shape-md: 12px;
+  --m3-shape-lg: 16px;
+  --m3-shape-lg-increased: 20px;
+  --m3-shape-xl: 28px;
+  --m3-shape-xl-increased: 32px;
+  --m3-shape-xxl: 48px;
+  --m3-shape-full: 9999px;
+
+  --m3-motion-spatial-fast: 350ms cubic-bezier(0.42, 1.67, 0.21, 0.9);
+  --m3-motion-spatial-default: 500ms cubic-bezier(0.38, 1.21, 0.22, 1);
+  --m3-motion-spatial-slow: 650ms cubic-bezier(0.39, 1.29, 0.35, 0.98);
+  --m3-motion-effects-fast: 150ms cubic-bezier(0.31, 0.94, 0.34, 1);
+  --m3-motion-effects-default: 200ms cubic-bezier(0.34, 0.8, 0.34, 1);
+  --m3-motion-effects-slow: 300ms cubic-bezier(0.34, 0.88, 0.34, 1);
+
+  --m3-elevation-1: 0 1px 2px rgb(54 76 132 / 7%), 0 2px 8px rgb(54 76 132 / 5%);
+  --m3-elevation-2: 0 4px 12px rgb(54 76 132 / 9%), 0 1px 3px rgb(31 31 31 / 7%);
+  --m3-elevation-3: 0 10px 28px rgb(54 76 132 / 13%), 0 2px 6px rgb(31 31 31 / 8%);
+
+  --bg-main: #F6F7FB;
+  --surface: var(--m3-surface);
+  --surface-raised: var(--m3-surface-container);
+  --border: var(--m3-outline-variant);
+  --text-primary: var(--m3-on-surface);
+  --text-secondary: var(--m3-on-surface-variant);
+  --primary-navy: var(--m3-primary);
+  --accent-coral: var(--m3-secondary);
+  --soft-coral: var(--m3-primary-container);
+  --soft-navy: var(--m3-secondary-container);
+  --success: var(--m3-success);
+  --warning: var(--m3-warning);
+  --danger: var(--m3-error);
+  --modal-surface: var(--m3-surface-container-lowest);
+  --modal-border: var(--m3-outline-variant);
+  --modal-backdrop: rgb(21 31 53 / 42%);
+}
+
+html[data-ui-style='m3'].dark {
+  --m3-primary: #B4C8FF;
+  --m3-on-primary: #172D60;
+  --m3-primary-container: #2F4678;
+  --m3-on-primary-container: #DCE5FF;
+  --m3-secondary: #BBC7E0;
+  --m3-on-secondary: #263248;
+  --m3-secondary-container: #3B475E;
+  --m3-on-secondary-container: #DCE4FA;
+  --m3-tertiary: #CBD97C;
+  --m3-on-tertiary: #303800;
+  --m3-tertiary-container: #454F08;
+  --m3-on-tertiary-container: #E7F1A8;
+  --m3-error: #FFB2B8;
+  --m3-on-error: #68001B;
+  --m3-error-container: #8D2630;
+  --m3-on-error-container: #FFDADD;
+  --m3-success: #9CD5B2;
+  --m3-on-success: #0E3822;
+  --m3-success-container: #244936;
+  --m3-on-success-container: #C6F2D5;
+  --m3-warning: #E8C46E;
+  --m3-on-warning: #3F2F00;
+  --m3-warning-container: #574619;
+  --m3-on-warning-container: #FFE7A3;
+  --m3-surface: #111722;
+  --m3-surface-dim: #111722;
+  --m3-surface-bright: #373D49;
+  --m3-surface-container-lowest: #0C111B;
+  --m3-surface-container-low: #181E2A;
+  --m3-surface-container: #1C2330;
+  --m3-surface-container-high: #272E3C;
+  --m3-surface-container-highest: #323947;
+  --m3-on-surface: #E4E6EE;
+  --m3-on-surface-variant: #C4C7D1;
+  --m3-outline: #8E929E;
+  --m3-outline-variant: #444954;
+  --m3-inverse-surface: #E4E1E9;
+  --m3-inverse-on-surface: #303036;
+  --m3-elevation-1: 0 2px 8px rgb(0 0 0 / 20%);
+  --m3-elevation-2: 0 5px 18px rgb(0 0 0 / 28%);
+  --m3-elevation-3: 0 14px 38px rgb(0 0 0 / 38%);
+  --bg-main: #111722;
+  --success: var(--m3-success);
+  --warning: var(--m3-warning);
+  --modal-backdrop: rgb(3 7 14 / 72%);
+}
+
+html[data-ui-style='m3'] body {
+  background-color: var(--bg-main);
+  background-image:
+    radial-gradient(circle at 8% -10%, rgb(149 177 238 / 22%), transparent 31rem),
+    radial-gradient(circle at 96% 16%, rgb(231 241 168 / 22%), transparent 25rem);
+  color: var(--m3-on-surface);
+}
+
+html[data-ui-style='m3'].dark body {
+  background-image:
+    radial-gradient(circle at 5% -5%, rgb(149 177 238 / 13%), transparent 34rem),
+    radial-gradient(circle at 96% 15%, rgb(231 241 168 / 8%), transparent 28rem);
+}
+
+/* M3 color roles mapped over the app's established palette. */
+html[data-ui-style='m3'] [class~='bg-[#FFFFFF]'],
+html[data-ui-style='m3'] [class~='bg-white'] {
+  background-color: var(--m3-surface-container-lowest) !important;
+}
+
+html[data-ui-style='m3'] [class~='bg-[#F7F7F8]'],
+html[data-ui-style='m3'] [class~='bg-[#FAFAFB]'],
+html[data-ui-style='m3'] [class~='bg-[#F8F9FB]'] {
+  background-color: var(--m3-surface-container-low) !important;
+}
+
+html[data-ui-style='m3'] [class~='bg-[#F1F1F3]'],
+html[data-ui-style='m3'] [class~='bg-[#F2F4F7]'],
+html[data-ui-style='m3'] [class~='bg-[#F3F4F6]'],
+html[data-ui-style='m3'] [class~='bg-[#F4F4F5]'],
+html[data-ui-style='m3'] [class~='bg-[#F4F7FB]'],
+html[data-ui-style='m3'] [class~='bg-[#F4F8FD]'],
+html[data-ui-style='m3'] [class~='bg-[#F6F7F9]'],
+html[data-ui-style='m3'] [class~='bg-[#F7F8FA]'],
+html[data-ui-style='m3'] [class~='bg-[#EEF2F7]'],
+html[data-ui-style='m3'] [class~='bg-[#EBEBED]'],
+html[data-ui-style='m3'] [class~='bg-[#E8E8EC]'] {
+  background-color: var(--m3-surface-container) !important;
+}
+
+html[data-ui-style='m3'] [class~='bg-[#24324A]'],
+html[data-ui-style='m3'] [class~='bg-[#1A2536]'],
+html[data-ui-style='m3'] [class~='bg-[#141C2B]'] {
+  background-color: var(--m3-primary) !important;
+  color: var(--m3-on-primary) !important;
+}
+
+html[data-ui-style='m3'] [class~='bg-[#24324A]/95'] {
+  background-color: color-mix(in srgb, var(--m3-primary) 94%, transparent) !important;
+}
+
+html[data-ui-style='m3'] [class~='bg-[#F26B5E]'],
+html[data-ui-style='m3'] [class~='bg-[#3B82F6]'] {
+  background-color: var(--m3-primary) !important;
+  color: var(--m3-on-primary) !important;
+}
+
+html[data-ui-style='m3'] [class~='bg-[#7B68EE]'],
+html[data-ui-style='m3'] [class~='bg-[#6C5CE7]'],
+html[data-ui-style='m3'] [class~='bg-[#6852ED]'],
+html[data-ui-style='m3'] [class~='bg-[#6655D2]'] {
+  background-color: var(--m3-secondary) !important;
+  color: var(--m3-on-secondary) !important;
+}
+
+html[data-ui-style='m3'] :is(
+  [class~='bg-[#24324A]'],
+  [class~='bg-[#1A2536]'],
+  [class~='bg-[#141C2B]'],
+  [class~='bg-[#F26B5E]'],
+  [class~='bg-[#3B82F6]']
+) :is([class~='text-white'], [class~='text-[#F26B5E]'], [class~='text-[#3B82F6]']) {
+  color: var(--m3-on-primary) !important;
+}
+
+html[data-ui-style='m3'] :is(
+  [class~='bg-[#7B68EE]'],
+  [class~='bg-[#6C5CE7]'],
+  [class~='bg-[#6852ED]'],
+  [class~='bg-[#6655D2]']
+) [class~='text-white'] {
+  color: var(--m3-on-secondary) !important;
+}
+
+html[data-ui-style='m3'] [class~='bg-[#FFF5F3]'],
+html[data-ui-style='m3'] [class~='bg-[#FDE9E7]'] {
+  background-color: var(--m3-error-container) !important;
+}
+
+html[data-ui-style='m3'] [class~='bg-[#FFF0ED]'],
+html[data-ui-style='m3'] [class~='bg-[#E6F1FF]'],
+html[data-ui-style='m3'] [class~='bg-[#EAF2FF]'],
+html[data-ui-style='m3'] [class~='bg-[#E8F0FA]'],
+html[data-ui-style='m3'] [class~='bg-[#EAF1FB]'] {
+  background-color: var(--m3-primary-container) !important;
+}
+
+html[data-ui-style='m3'] [class~='bg-[#EEF8F3]'],
+html[data-ui-style='m3'] [class~='bg-[#E7F4ED]'],
+html[data-ui-style='m3'] [class~='bg-[#E3F4F1]'],
+html[data-ui-style='m3'] [class~='bg-[#E3F8E9]'],
+html[data-ui-style='m3'] [class~='bg-[#E6F4ED]'],
+html[data-ui-style='m3'] [class~='bg-[#EEF8F2]'] {
+  background-color: var(--m3-success-container) !important;
+}
+
+html[data-ui-style='m3'] [class~='bg-[#FEF3D6]'],
+html[data-ui-style='m3'] [class~='bg-[#FFF0DF]'],
+html[data-ui-style='m3'] [class~='bg-[#FFF1DB]'],
+html[data-ui-style='m3'] [class~='bg-[#FFF2DF]'],
+html[data-ui-style='m3'] [class~='bg-[#FFF8E7]'],
+html[data-ui-style='m3'] [class~='bg-[#FFF9ED]'] {
+  background-color: var(--m3-warning-container) !important;
+}
+
+html[data-ui-style='m3'] [class~='bg-[#EEE9FF]'],
+html[data-ui-style='m3'] [class~='bg-[#E9ECFF]'],
+html[data-ui-style='m3'] [class~='bg-[#F2E9FA]'] {
+  background-color: var(--m3-secondary-container) !important;
+}
+
+html[data-ui-style='m3'] [class~='bg-[#FFF0ED]']:is(
+  [class~='text-[#D95858]'],
+  [class~='text-[#D95346]'],
+  [class~='text-[#C22929]'],
+  [class~='text-[#B5473D]'],
+  [class~='text-[#9A453E]'],
+  [class~='text-[#B14E46]'],
+  [class~='text-[#B34F45]']
+) {
+  background-color: var(--m3-error-container) !important;
+}
+
+html[data-ui-style='m3'] [class~='text-[#202124]'],
+html[data-ui-style='m3'] [class~='text-[#24324A]'] {
+  color: var(--m3-on-surface) !important;
+}
+
+html[data-ui-style='m3'] [class~='text-[#737680]'],
+html[data-ui-style='m3'] [class~='text-[#8C9BAE]'],
+html[data-ui-style='m3'] [class~='text-[#8A8E98]'],
+html[data-ui-style='m3'] [class~='text-[#98A2B3]'],
+html[data-ui-style='m3'] [class~='text-[#5E6470]'],
+html[data-ui-style='m3'] [class~='text-[#626874]'],
+html[data-ui-style='m3'] [class~='text-[#6E7380]'],
+html[data-ui-style='m3'] [class~='text-[#7B808B]'],
+html[data-ui-style='m3'] [class~='text-[#566176]'],
+html[data-ui-style='m3'] [class~='text-[#566B8D]'],
+html[data-ui-style='m3'] [class~='text-[#9A9DA5]'],
+html[data-ui-style='m3'] [class~='text-[#9A9DA6]'] {
+  color: var(--m3-on-surface-variant) !important;
+}
+
+html[data-ui-style='m3'] [class~='text-[#F26B5E]'],
+html[data-ui-style='m3'] [class~='text-[#3B82F6]'],
+html[data-ui-style='m3'] [class~='text-[#1D4ED8]'],
+html[data-ui-style='m3'] [class~='text-[#2563EB]'],
+html[data-ui-style='m3'] [class~='text-[#315988]'],
+html[data-ui-style='m3'] [class~='text-[#315F98]'],
+html[data-ui-style='m3'] [class~='text-[#356AA0]'] {
+  color: var(--m3-primary) !important;
+}
+
+html[data-ui-style='m3'] [class~='text-[#7B68EE]'],
+html[data-ui-style='m3'] [class~='text-[#6C5CE7]'],
+html[data-ui-style='m3'] [class~='text-[#6852ED]'],
+html[data-ui-style='m3'] [class~='text-[#6929C4]'],
+html[data-ui-style='m3'] [class~='text-[#5B61AD]'],
+html[data-ui-style='m3'] [class~='text-[#6557A5]'],
+html[data-ui-style='m3'] [class~='text-[#765096]'],
+html[data-ui-style='m3'] [class~='text-[#795099]'],
+html[data-ui-style='m3'] [class~='text-[#7A4D9D]'] {
+  color: var(--m3-secondary) !important;
+}
+
+html[data-ui-style='m3'] [class~='text-[#4F9D78]'],
+html[data-ui-style='m3'] [class~='text-[#10B981]'],
+html[data-ui-style='m3'] [class~='text-[#317A58]'],
+html[data-ui-style='m3'] [class~='text-[#3D8362]'],
+html[data-ui-style='m3'] [class~='text-[#347256]'],
+html[data-ui-style='m3'] [class~='text-[#356D53]'],
+html[data-ui-style='m3'] [class~='text-[#39785D]'] {
+  color: var(--success) !important;
+}
+
+html[data-ui-style='m3'] [class~='text-[#D95858]'],
+html[data-ui-style='m3'] [class~='text-[#D95346]'],
+html[data-ui-style='m3'] [class~='text-[#C22929]'],
+html[data-ui-style='m3'] [class~='text-[#B5473D]'],
+html[data-ui-style='m3'] [class~='text-[#9A453E]'],
+html[data-ui-style='m3'] [class~='text-[#B14E46]'],
+html[data-ui-style='m3'] [class~='text-[#B34F45]'] {
+  color: var(--m3-error) !important;
+}
+
+html[data-ui-style='m3'] [class~='text-[#E6A23C]'],
+html[data-ui-style='m3'] [class~='text-[#D97706]'],
+html[data-ui-style='m3'] [class~='text-[#8A5B16]'],
+html[data-ui-style='m3'] [class~='text-[#8B5C21]'],
+html[data-ui-style='m3'] [class~='text-[#9B6514]'] {
+  color: var(--warning) !important;
+}
+
+/* Dark themes use tonal containers for broad filled surfaces. Mapping legacy
+   navy fills directly to the light dark-theme primary made large panels glare. */
+html[data-ui-style='m3'].dark :is(
+  [class~='bg-[#24324A]'],
+  [class~='bg-[#1A2536]'],
+  [class~='bg-[#141C2B]'],
+  [class~='bg-[#F26B5E]'],
+  [class~='bg-[#3B82F6]']
+) {
+  background-color: var(--m3-primary-container) !important;
+  color: var(--m3-on-primary-container) !important;
+}
+
+html[data-ui-style='m3'].dark [class~='bg-[#24324A]/95'] {
+  background-color: color-mix(in srgb, var(--m3-primary-container) 94%, transparent) !important;
+}
+
+html[data-ui-style='m3'].dark :is(
+  [class~='bg-[#7B68EE]'],
+  [class~='bg-[#6C5CE7]'],
+  [class~='bg-[#6852ED]'],
+  [class~='bg-[#6655D2]']
+) {
+  background-color: var(--m3-secondary-container) !important;
+  color: var(--m3-on-secondary-container) !important;
+}
+
+html[data-ui-style='m3'].dark :is(
+  [class~='bg-[#24324A]'],
+  [class~='bg-[#1A2536]'],
+  [class~='bg-[#141C2B]'],
+  [class~='bg-[#F26B5E]'],
+  [class~='bg-[#3B82F6]']
+) :is([class~='text-white'], [class~='text-[#F26B5E]'], [class~='text-[#3B82F6]']) {
+  color: var(--m3-on-primary-container) !important;
+}
+
+html[data-ui-style='m3'].dark :is(
+  [class~='bg-[#7B68EE]'],
+  [class~='bg-[#6C5CE7]'],
+  [class~='bg-[#6852ED]'],
+  [class~='bg-[#6655D2]']
+) [class~='text-white'] {
+  color: var(--m3-on-secondary-container) !important;
+}
+
+/* Filled controls and compact icon containers keep one readable on-color even
+   when the legacy component supplied a separate accent class to its icon. */
+html[data-ui-style='m3'] :where(button, a)[class*='bg-['] > svg {
+  color: inherit !important;
+}
+
+html[data-ui-style='m3'] :is(
+  [class~='bg-[#24324A]'],
+  [class~='bg-[#1A2536]'],
+  [class~='bg-[#141C2B]'],
+  [class~='bg-[#F26B5E]'],
+  [class~='bg-[#3B82F6]']
+) > svg {
+  color: var(--m3-on-primary) !important;
+}
+
+html[data-ui-style='m3'].dark :is(
+  [class~='bg-[#24324A]'],
+  [class~='bg-[#1A2536]'],
+  [class~='bg-[#141C2B]'],
+  [class~='bg-[#F26B5E]'],
+  [class~='bg-[#3B82F6]']
+) > svg {
+  color: var(--m3-on-primary-container) !important;
+}
+
+html[data-ui-style='m3'] [class~='border-[#E8E8EC]'],
+html[data-ui-style='m3'] [class~='border-[#E5E7EB]'],
+html[data-ui-style='m3'] [class~='border-[#E5EAF0]'],
+html[data-ui-style='m3'] [class~='border-[#E1E5EB]'],
+html[data-ui-style='m3'] [class~='border-[#DDE2EA]'],
+html[data-ui-style='m3'] [class~='border-[#DDE1E7]'],
+html[data-ui-style='m3'] [class~='border-[#D7DEE8]'],
+html[data-ui-style='m3'] [class~='border-[#CBD3DE]'] {
+  border-color: var(--m3-outline-variant) !important;
+}
+
+html[data-ui-style='m3'] [class~='divide-[#E8E8EC]'] > :not([hidden]) ~ :not([hidden]) {
+  border-color: var(--m3-outline-variant) !important;
+}
+
+html[data-ui-style='m3'] [class~='border-[#F26B5E]'],
+html[data-ui-style='m3'] [class~='border-[#3B82F6]'] {
+  border-color: var(--m3-primary) !important;
+}
+
+html[data-ui-style='m3'] [class~='border-[#4F9D78]'],
+html[data-ui-style='m3'] [class~='border-[#10B981]'] {
+  border-color: var(--success) !important;
+}
+
+html[data-ui-style='m3'] [class~='from-[#EEF2F7]'] {
+  --tw-gradient-from: color-mix(in srgb, var(--m3-primary-container) 82%, transparent) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+/* Shape scale: denser controls stay modest; cards and dialogs are rounder. */
+html[data-ui-style='m3'] [class~='rounded-md'] { border-radius: var(--m3-shape-sm); }
+html[data-ui-style='m3'] [class~='rounded-lg'] { border-radius: var(--m3-shape-md); }
+html[data-ui-style='m3'] [class~='rounded-xl'] { border-radius: var(--m3-shape-lg-increased); }
+html[data-ui-style='m3'] [class~='rounded-2xl'] { border-radius: var(--m3-shape-xl); }
+html[data-ui-style='m3'] [class~='rounded-3xl'] { border-radius: var(--m3-shape-xl-increased); }
+html[data-ui-style='m3'] button[class*='rounded-']:not([class~='rounded-none']) { border-radius: var(--m3-shape-full); }
+
+html[data-ui-style='m3'] input:not([type='checkbox']):not([type='radio']),
+html[data-ui-style='m3'] textarea,
+html[data-ui-style='m3'] select {
+  background-color: var(--m3-surface-container-lowest) !important;
+  border-color: var(--m3-outline-variant) !important;
+  border-radius: var(--m3-shape-md) !important;
+  color: var(--m3-on-surface) !important;
+  transition:
+    border-color var(--m3-motion-effects-fast),
+    background-color var(--m3-motion-effects-fast),
+    box-shadow var(--m3-motion-effects-fast);
+}
+
+html[data-ui-style='m3'] ::placeholder {
+  color: color-mix(in srgb, var(--m3-on-surface-variant) 76%, transparent) !important;
+  opacity: 1;
+}
+
+/* Consistent accessible state indicators. */
+html[data-ui-style='m3'] :where(button, a, input, textarea, select):focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--m3-primary) 72%, white);
+  outline-offset: 3px;
+}
+
+html[data-ui-style='m3'] :where(button, a) {
+  transition:
+    color var(--m3-motion-effects-fast),
+    background-color var(--m3-motion-effects-fast),
+    border-color var(--m3-motion-effects-fast),
+    box-shadow var(--m3-motion-effects-fast),
+    opacity var(--m3-motion-effects-fast),
+    transform var(--m3-motion-spatial-fast),
+    border-radius var(--m3-motion-spatial-fast);
+}
+
+html[data-ui-style='m3'] :where(button, a):active {
+  transform: scale(0.97);
+}
+
+html[data-ui-style='m3'] :where(button, input, textarea, select):disabled {
+  cursor: not-allowed;
+  opacity: 0.56 !important;
+}
+
+html[data-ui-style='m3'] :where(button, a):hover svg {
+  transform: scale(1.055);
+  transition: transform var(--m3-motion-spatial-fast);
+}
+
+html[data-ui-style='m3'] [class~='hover:bg-[#F7F7F8]']:hover,
+html[data-ui-style='m3'] [class~='hover:bg-[#EEF2F7]']:hover {
+  background-color: var(--m3-surface-container-high) !important;
+}
+
+html[data-ui-style='m3'] [class~='hover:bg-[#1A2536]']:hover,
+html[data-ui-style='m3'] [class~='hover:bg-[#6C5CE7]']:hover {
+  background-color: color-mix(in srgb, var(--m3-primary) 88%, var(--m3-on-surface)) !important;
+}
+
+html[data-ui-style='m3'] [class~='hover:text-[#202124]']:hover,
+html[data-ui-style='m3'] [class~='hover:text-[#24324A]']:hover {
+  color: var(--m3-on-surface) !important;
+}
+
+/* Tone-based elevation, with shadows reserved for floating surfaces. */
+html[data-ui-style='m3'] [class~='shadow-sm'],
+html[data-ui-style='m3'] [class~='shadow-xs'],
+html[data-ui-style='m3'] [class~='shadow-2xs'] {
+  box-shadow: var(--m3-elevation-1) !important;
+}
+
+html[data-ui-style='m3'] [class~='shadow-md'],
+html[data-ui-style='m3'] [class~='shadow-lg'] {
+  box-shadow: var(--m3-elevation-2) !important;
+}
+
+html[data-ui-style='m3'] [class~='shadow-xl'],
+html[data-ui-style='m3'] [class~='shadow-2xl'] {
+  box-shadow: var(--m3-elevation-3) !important;
+}
+
+html[data-ui-style='m3'] main [class~='bg-[#FFFFFF]'][class*='border'],
+html[data-ui-style='m3'] main [class~='bg-white'][class*='border'] {
+  background-color: var(--m3-surface-container-lowest) !important;
+  border-color: var(--m3-outline-variant) !important;
+  box-shadow: var(--m3-elevation-1);
+}
+
+html[data-ui-style='m3'] [data-mobile-modal-panel],
+html[data-ui-style='m3'] [data-mobile-modal] > [role='dialog'],
+html[data-ui-style='m3'] [data-modal-surface] {
+  background-color: var(--m3-surface-container-lowest) !important;
+  border: 1px solid var(--m3-outline-variant) !important;
+  border-radius: var(--m3-shape-xl-increased) !important;
+  box-shadow: var(--m3-elevation-3) !important;
+}
+
+html[data-ui-style='m3'] [data-mobile-modal],
+html[data-ui-style='m3'] [data-modal-overlay] {
+  background-color: var(--modal-backdrop) !important;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+/* Adaptive scaffold surfaces and the soft reference-palette atmosphere. */
+html[data-ui-style='m3'] [data-app-shell] {
+  isolation: isolate;
+  position: relative;
+  overflow-x: clip;
+  background-color: var(--bg-main) !important;
+  background-image:
+    radial-gradient(circle at 6% 7%, rgb(149 177 238 / 12%), transparent 24rem),
+    radial-gradient(circle at 94% 20%, rgb(231 241 168 / 11%), transparent 22rem);
+}
+
+html[data-ui-style='m3'] [data-app-shell]::before,
+html[data-ui-style='m3'] [data-app-shell]::after {
+  content: '';
+  position: fixed;
+  z-index: 0;
+  pointer-events: none;
+  filter: blur(10px);
+  opacity: 0.24;
+}
+
+html[data-ui-style='m3'] [data-app-shell]::before {
+  width: 12rem;
+  height: 12rem;
+  right: 4vw;
+  top: 16vh;
+  border-radius: 38% 62% 57% 43% / 42% 36% 64% 58%;
+  background: var(--m3-ref-lime);
+  transform: rotate(12deg);
+}
+
+html[data-ui-style='m3'] [data-app-shell]::after {
+  width: 16rem;
+  height: 16rem;
+  left: 18vw;
+  bottom: -8rem;
+  border-radius: 58% 42% 35% 65% / 48% 62% 38% 52%;
+  background: var(--m3-ref-blue);
+  transform: rotate(-18deg);
+}
+
+html[data-ui-style='m3'].dark [data-app-shell] {
+  background-image:
+    radial-gradient(circle at 6% 7%, rgb(149 177 238 / 7%), transparent 24rem),
+    radial-gradient(circle at 94% 20%, rgb(231 241 168 / 5%), transparent 22rem);
+}
+
+html[data-ui-style='m3'].dark [data-app-shell]::before,
+html[data-ui-style='m3'].dark [data-app-shell]::after {
+  filter: blur(14px);
+  opacity: 0.12;
+}
+
+html[data-ui-style='m3'] [data-app-shell] > :not([class~='fixed']) {
+  position: relative;
+  z-index: 1;
+}
+
+html[data-ui-style='m3'] [data-app-shell] > [data-sidebar-layer] {
+  z-index: 2;
+}
+
+html[data-ui-style='m3'] aside.fixed,
+html[data-ui-style='m3'] header.sticky {
+  background-color: color-mix(in srgb, var(--m3-surface-container-lowest) 91%, transparent) !important;
+  border-color: var(--m3-outline-variant) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(1.1);
+  backdrop-filter: blur(18px) saturate(1.1);
+}
+
+html[data-ui-style='m3'] nav[data-mobile-bottom-nav] {
+  background-color: color-mix(in srgb, var(--m3-ref-navy) 94%, transparent) !important;
+  border-color: color-mix(in srgb, var(--m3-primary-container) 35%, transparent) !important;
+  border-radius: var(--m3-shape-xl) !important;
+  box-shadow: var(--m3-elevation-3) !important;
+}
+
+html[data-ui-style='m3'] nav[data-mobile-bottom-nav] a {
+  color: #DDE6FF !important;
+}
+
+html[data-ui-style='m3'] nav[data-mobile-bottom-nav] a:hover,
+html[data-ui-style='m3'] nav[data-mobile-bottom-nav] a[class~='bg-white/10'] {
+  color: #FFFFFF !important;
+}
+
+html[data-ui-style='m3'] h1,
+html[data-ui-style='m3'] h2,
+html[data-ui-style='m3'] h3 {
+  letter-spacing: -0.018em;
+  text-wrap: balance;
+}
+
+@keyframes m3PageEnter {
+  from { opacity: 0; transform: translate3d(0, 10px, 0) scale(0.995); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+
+html[data-ui-style='m3'] [data-app-shell] main > * {
+  transform-origin: top center;
+  animation: m3PageEnter var(--m3-motion-spatial-default) both;
+}
+
+html[data-ui-style='m3'] .animate-fade-in {
+  animation-duration: 350ms;
+  animation-timing-function: cubic-bezier(0.42, 1.67, 0.21, 0.9);
+}
+
+html[data-ui-style='m3'] :where(main a, main button)[class*='shadow']:hover {
+  box-shadow: var(--m3-elevation-2) !important;
+  transform: translateY(-2px);
+}
+
+/* Keep calendar categories distinct while harmonizing them with the palette. */
+html[data-ui-style='m3'] [data-calendar-tone='blue'] {
+  background-color: var(--m3-primary-container) !important;
+  border-color: color-mix(in srgb, var(--m3-primary) 45%, transparent) !important;
+  color: var(--m3-on-primary-container) !important;
+}
+
+html[data-ui-style='m3'] [data-calendar-tone='green'] {
+  background-color: var(--m3-tertiary-container) !important;
+  border-color: color-mix(in srgb, var(--m3-tertiary) 45%, transparent) !important;
+  color: var(--m3-on-tertiary-container) !important;
+}
+
+html[data-ui-style='m3'] [data-calendar-tone='purple'] {
+  background-color: var(--m3-secondary-container) !important;
+  border-color: color-mix(in srgb, var(--m3-secondary) 45%, transparent) !important;
+  color: var(--m3-on-secondary-container) !important;
+}
+
+html[data-ui-style='m3'] [data-calendar-tone='coral'] {
+  background-color: var(--m3-error-container) !important;
+  border-color: color-mix(in srgb, var(--m3-error) 45%, transparent) !important;
+  color: var(--m3-on-error-container) !important;
+}
+
+/* Documents stay faithful to their user-selected print palette even while the
+   surrounding editor uses the dark application theme. */
+html[data-ui-style='m3'].dark [data-document-preview] {
+  color-scheme: light;
+  isolation: isolate;
+}
+
+/* Large calculator results use a low-emphasis surface; each package keeps a
+   distinct semantic tone without becoming a bright slab in dark mode. */
+html[data-ui-style='m3'].dark [data-fee-result-panel] {
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--m3-primary-container) 36%, var(--m3-surface-container-lowest)),
+      var(--m3-surface-container-high)
+    ) !important;
+  border: 1px solid var(--m3-outline-variant);
+  color: var(--m3-on-surface) !important;
+}
+
+html[data-ui-style='m3'].dark [data-fee-package-tone='primary'] {
+  background-color: color-mix(in srgb, var(--m3-primary-container) 66%, var(--m3-surface-container-lowest)) !important;
+  border-color: color-mix(in srgb, var(--m3-primary) 38%, var(--m3-outline-variant)) !important;
+}
+
+html[data-ui-style='m3'].dark [data-fee-package-tone='primary'] [data-fee-package-accent] {
+  color: var(--m3-primary) !important;
+}
+
+html[data-ui-style='m3'].dark [data-fee-package-tone='error'] {
+  background-color: color-mix(in srgb, var(--m3-error-container) 46%, var(--m3-surface-container-lowest)) !important;
+  border-color: color-mix(in srgb, var(--m3-error) 38%, var(--m3-outline-variant)) !important;
+}
+
+html[data-ui-style='m3'].dark [data-fee-package-tone='error'] [data-fee-package-accent] {
+  color: var(--m3-error) !important;
+}
+
+html[data-ui-style='m3'].dark [data-fee-package-tone='secondary'] {
+  background-color: color-mix(in srgb, var(--m3-secondary-container) 62%, var(--m3-surface-container-lowest)) !important;
+  border-color: color-mix(in srgb, var(--m3-secondary) 38%, var(--m3-outline-variant)) !important;
+}
+
+html[data-ui-style='m3'].dark [data-fee-package-tone='secondary'] [data-fee-package-accent] {
+  color: var(--m3-secondary) !important;
+}
+
+/* Profile gradients remain expressive in light mode, then shift to calm M3
+   tonal surfaces in dark mode so the header does not flash as a pastel panel. */
+html[data-ui-style='m3'].dark [data-performance-profile] {
+  background-image:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--m3-primary-container) 72%, var(--m3-surface-container-lowest)) 0%,
+      color-mix(in srgb, var(--m3-secondary-container) 58%, var(--m3-surface-container)) 55%,
+      color-mix(in srgb, var(--m3-success-container) 42%, var(--m3-surface-container-lowest)) 100%
+    ) !important;
+  color: var(--m3-on-surface) !important;
+}
+
+html[data-ui-style='m3'].dark [data-performance-profile-identity] :is(h2, p, svg) {
+  color: var(--m3-on-surface) !important;
+}
+
+html[data-ui-style='m3'].dark [data-performance-profile-badge] {
+  background-color: color-mix(in srgb, var(--m3-primary) 12%, transparent) !important;
+  border-color: color-mix(in srgb, var(--m3-primary) 42%, transparent) !important;
+  color: var(--m3-primary) !important;
+}
+
+html[data-ui-style='m3'].dark [data-performance-profile-stat] {
+  background-color: color-mix(in srgb, var(--m3-surface-container-lowest) 74%, transparent) !important;
+  border-color: var(--m3-outline-variant) !important;
+  color: var(--m3-on-surface) !important;
+}
+
+html[data-ui-style='m3'].dark [data-performance-profile-stat] :is(span, strong) {
+  color: var(--m3-on-surface) !important;
+}
+
+@media (min-width: 768px) and (max-width: 899px) {
+  html[data-ui-style='m3'] [data-dashboard-hero],
+  html[data-ui-style='m3'] [data-dashboard-filter-bar] {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  html[data-ui-style='m3'] [data-dashboard-hero] > :last-child {
+    align-self: stretch;
+  }
+
+  html[data-ui-style='m3'] [data-dashboard-hero] > :last-child button {
+    flex: 1;
+  }
+
+  html[data-ui-style='m3'] [data-dashboard-filter-actions] {
+    width: 100%;
+  }
+
+  html[data-ui-style='m3'] [data-dashboard-filter-group] {
+    flex: 1;
+  }
+}
+
+@media (max-width: 767px) {
+  html[data-ui-style='m3'] [data-dashboard-filter-actions] {
+    align-items: stretch;
+    width: 100%;
+  }
+
+  html[data-ui-style='m3'] [data-dashboard-filter-group] {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto minmax(0, 1fr);
+    width: 100%;
+  }
+
+  html[data-ui-style='m3'] [data-dashboard-filter-group] select {
+    min-width: 0;
+    width: 100%;
+  }
+
+  html[data-ui-style='m3'] [data-attendance-actions] {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    overflow-x: visible;
+  }
+
+  html[data-ui-style='m3'] [data-attendance-actions] > * {
+    height: auto;
+    min-height: 2.5rem;
+    min-width: 0;
+    justify-content: center;
+    white-space: normal;
+  }
+
+  html[data-ui-style='m3'] [data-attendance-actions] > :first-child:nth-last-child(3) {
+    grid-column: 1 / -1;
+  }
+
+  html[data-ui-style='m3'] [data-mobile-modal-panel],
+  html[data-ui-style='m3'] [data-mobile-modal] > [role='dialog'] {
+    border-radius: var(--m3-shape-xl-increased) var(--m3-shape-xl-increased) 0 0 !important;
+  }
+
+  html[data-ui-style='m3'] [data-app-shell]::before {
+    right: -7rem;
+    top: 9rem;
+  }
+
+  html[data-ui-style='m3'] [data-app-shell]::after {
+    left: -9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-ui-style='m3'],
+  html[data-ui-style='m3'] *,
+  html[data-ui-style='m3'] *::before,
+  html[data-ui-style='m3'] *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
